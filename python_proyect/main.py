@@ -1,5 +1,5 @@
 def saludar(nombre):
     return f'Hola amigo {nombre}'
 
-nombre = 'Manolo'
+nombre = 'Manuel'
 print(saludar(nombre))
