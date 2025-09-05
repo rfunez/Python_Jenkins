@@ -19,6 +19,7 @@ pipeline {
         stage ('Install dependencies') {
             steps {
                   sh '''
+                     #!/bin/bash
                      python3 -m venv env
                      source venv/bin/activate
                      venv/bin/pip install --upgrade pip
