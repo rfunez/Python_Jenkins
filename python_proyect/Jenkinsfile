@@ -6,7 +6,7 @@ pipeline {
         dockerfile {
             label 'docker_node'
             args '--name jenkins'
-            dir '.'
+            dir './python_proyect'
         }    
     }
     
