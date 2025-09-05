@@ -11,11 +11,11 @@ pipeline {
     }
     
     stages {
-        stage ('Checkout') {
+        /*stage ('Checkout') {
             steps {
                 git branch: 'docker', credentialsId: 'JenkinsKey', url: 'git@github.com:rfunez/Python_Jenkins.git'
             }
-        }
+        }*/
         stage ('Install dependencies') {
             sh '''
                   python3 -m venv env
