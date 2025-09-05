@@ -36,7 +36,7 @@ pipeline {
         }
         stage ('Running app') {
             steps {
-                sh 'python3 main.py'
+                sh 'python3 ./python_proyect/main.py'
             }
         }
     }
