@@ -1,0 +1,40 @@
+pipeline {
+    options {
+            buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
+    } 
+    agent {
+        dockerfile {
+            label 'docker_node'
+            args '--name jenkins'
+            dir '.'
+        }    
+    }
+    
+    stages {
+        stage ('Checkout') {
+            steps {
+                git branch: 'docker', credentialsId: 'JenkinsKey', url: 'git@github.com:rfunez/Python_Jenkins.git'
+            }
+        }
+        stage ('Install dependencies') {
+            sh '''
+                  python3 -m venv env
+                  source venv/bin/activate
+                  venv/bin/pip install --upgrade pip
+                  venv/bin/pip install -r requirements.txt
+            '''
+        }
+        stage ('Running test') {
+            steps {
+                  catchError(buildResult: 'SUCCESS', message: 'Si falla el test el pipeline continua', stageResult: 'FAILURE') {
+                            sh 'venv/bin/pytest -v'
+                  }    
+            }
+        }
+        stage ('Running app') {
+            steps {
+                sh 'python3 main.py'
+            }
+        }
+    }
+}
