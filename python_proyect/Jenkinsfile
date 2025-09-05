@@ -20,6 +20,7 @@ pipeline {
             steps {
                   sh '''
                      #!/bin/bash
+                     docker ps
                      python3 -m venv venv
                      ls -latr
                      venv/bin/pip install --upgrade pip
