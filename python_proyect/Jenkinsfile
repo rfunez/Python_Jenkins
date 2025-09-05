@@ -1,6 +1,5 @@
 pipeline {
     options {
-            shell '/bin/bash'
             buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
     } 
     agent {
@@ -22,7 +21,6 @@ pipeline {
                   sh '''
                      #!/bin/bash
                      python3 -m venv venv
-                     source venv/bin/activate
                      venv/bin/pip install --upgrade pip
                      venv/bin/pip install -r requirements.txt
                   '''               
