@@ -1,5 +1,6 @@
 pipeline {
     options {
+            shell '/bin/bash'
             buildDiscarder logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '3')
     } 
     agent {
